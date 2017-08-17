@@ -1,19 +1,69 @@
 {
   "version": "0.2.0",
+  "compounds": [
+    {
+      "name": ".Net+Browser",
+      "configurations": [".NET Core Launch (console)", "Launch Chrome"]
+    }
+  ],
   "configurations": [
     {
       "type": "chrome",
       "request": "launch",
-      "name": "Launch Chrome against localhost",
-      "url": "http://58.181.39.65:4200",
-      "webRoot": "${workspaceRoot}"
+      "name": "Launch Chrome",
+      "url": "http://localhost:5000",
+      "webRoot": "${workspaceRoot}/wwwroot",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "/Views": "${workspaceRoot}/Views"
+      }
     },
     {
-      "type": "chrome",
+      "name": ".NET Core Launch (console)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceRoot}/bin/Debug/netcoreapp1.1/MJW_CNT_CORE.dll",
+      "args": [],
+      "cwd": "${workspaceRoot}",
+      "stopAtEntry": false,
+      "console": "internalConsole"
+    },
+    {
+      "name": ".NET Core Launch (web)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceRoot}/bin/Debug/netcoreapp1.1/MJW_CNT_CORE.dll",
+      "args": [],
+      "cwd": "${workspaceRoot}",
+      "stopAtEntry": false,
+      "launchBrowser": {
+        "enabled": true,
+        "args": "${auto-detect-url}",
+        "windows": {
+          "command": "cmd.exe",
+          "args": "/C start ${auto-detect-url}"
+        },
+        "osx": {
+          "command": "open"
+        },
+        "linux": {
+          "command": "xdg-open"
+        }
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceRoot}/Views"
+      }
+    },
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
       "request": "attach",
-      "name": "Attach to Chrome",
-      "port": 9222,
-      "webRoot": "${workspaceRoot}"
+      "processId": "${command:pickProcess}"
     }
   ]
 }
